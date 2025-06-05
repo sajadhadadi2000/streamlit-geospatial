@@ -9,6 +9,7 @@ import geopandas as gpd
 import streamlit as st
 import leafmap.colormaps as cm
 from leafmap.common import hex_to_rgb
+import tempfile
 
 st.set_page_config(layout="wide")
 
@@ -31,7 +32,9 @@ STREAMLIT_STATIC_PATH = pathlib.Path(st.__path__[0]) / "static"
 # and we write output files to it
 DOWNLOADS_PATH = STREAMLIT_STATIC_PATH / "downloads"
 if not DOWNLOADS_PATH.is_dir():
-    DOWNLOADS_PATH.mkdir()
+    DOWNLOADS_PATH = tempfile.gettempdir()
+
+#DOWNLOADS_PATH.mkdir()
 
 # Data source: https://www.realtor.com/research/data/
 # link_prefix = "https://econdata.s3-us-west-2.amazonaws.com/Reports/"
